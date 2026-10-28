@@ -109,6 +109,13 @@ st.markdown("""
         padding: 16px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        width: 100%;
+        height: 116px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     .metric-val {
         font-size: 24px;
@@ -156,6 +163,17 @@ st.markdown("""
         font-size: 16px;
         display: inline-block;
         box-shadow: 0 0 15px rgba(239, 68, 68, 0.35);
+    }
+    .card-green,
+    .card-yellow,
+    .card-red {
+        width: 100%;
+        height: 116px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
     /* Policy Rules Card */
@@ -263,6 +281,79 @@ st.markdown("""
         border-color: #facc15 !important;
         box-shadow: 0 0 12px rgba(250, 204, 21, 0.4) !important;
         color: #ffffff !important;
+    }
+
+    /* Dashboard tabs: wrap instead of overlapping the final tab with scroll controls. */
+    [role="tablist"] {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        height: auto !important;
+        overflow: visible !important;
+        border-bottom: 0 !important;
+        margin-bottom: 12px !important;
+    }
+    button[aria-label^="Scroll tabs"] {
+        display: none !important;
+    }
+    [role="tab"] {
+        flex: 0 1 calc(33.333% - 8px) !important;
+        min-width: 0 !important;
+        min-height: 48px !important;
+        height: auto !important;
+        justify-content: center !important;
+        padding: 10px 12px !important;
+        white-space: normal !important;
+        text-align: center !important;
+        color: #d1fae5 !important;
+        background: rgba(5, 38, 20, 0.72) !important;
+        border: 1px solid rgba(74, 222, 128, 0.28) !important;
+        border-radius: 12px !important;
+        transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease !important;
+    }
+    [role="tab"] p {
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+    [role="tab"] .react-aria-SelectionIndicator {
+        display: none !important;
+    }
+    [role="tab"]:hover {
+        background: rgba(22, 101, 52, 0.65) !important;
+        border-color: rgba(74, 222, 128, 0.7) !important;
+    }
+    [role="tab"][aria-selected="true"] {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, #14532d, #166534) !important;
+        border-color: #4ade80 !important;
+        box-shadow: 0 4px 14px rgba(34, 197, 94, 0.2) !important;
+    }
+    [role="tab"]:focus-visible,
+    div[data-testid="stButton"] > button:focus-visible {
+        outline: 2px solid #facc15 !important;
+        outline-offset: 2px !important;
+    }
+
+    /* Keep primary actions visually consistent with the dashboard navigation. */
+    div[data-testid="stButton"] > button[kind="primary"] {
+        min-height: 44px !important;
+        padding: 8px 18px !important;
+        color: #052e16 !important;
+        background: linear-gradient(135deg, #86efac, #4ade80) !important;
+        border: 1px solid #86efac !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.18) !important;
+        transition: filter 160ms ease, box-shadow 160ms ease !important;
+    }
+    div[data-testid="stButton"] > button[kind="primary"]:hover {
+        filter: brightness(1.08) !important;
+        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3) !important;
+    }
+    @media (max-width: 640px) {
+        [role="tab"] {
+            flex-basis: calc(50% - 8px) !important;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
